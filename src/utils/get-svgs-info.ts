@@ -1,16 +1,20 @@
-import fs from "fs";
-import type { SVGJSON } from "../types";
+import fetch from "node-fetch";
 
-export default function getSvgInfo() {
-  const json: SVGJSON[] = [];
+interface File {
+  name: string;
+}
 
-  fs.readdirSync("./src/svgs").forEach((file, index) => {
-    const name = file.replace(/\.svg$/, "");
-    json.push({
-      index,
-      name,
-    });
-  });
+export async function getSvgsInfo() {
+  const response = await fetch(
+    "https://api.github.com/repos/pheralb/svgl/contents/static/library?ref=main"
+  );
 
-  return json;
+  const files = (await response.json()) as File[];
+
+  const names = files
+    .map((file: File) => file.name)
+    .map((name: string) => name.replace(".svg", ""))
+    .map((name: string) => name.toLowerCase());
+
+  return names;
 }

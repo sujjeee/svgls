@@ -4,7 +4,7 @@ import ora from "ora";
 import { existsSync } from "fs";
 import prompts from "prompts";
 import { z } from "zod";
-import getSvgInfo from "@/src/utils/get-svgs-info";
+import { getSvgsInfo } from "@/src/utils/get-svgs-info";
 import { logger } from "@/src/utils/logger";
 import { handleError } from "@/src/utils/handle-error";
 import { copySvgs } from "@/src/utils/copy-svgs";
@@ -41,10 +41,10 @@ export const add = new Command()
         process.exit(1);
       }
 
-      const svgIndex = getSvgInfo();
+      const svgIndex = await getSvgsInfo();
 
       let selectedSvgs = options.all
-        ? svgIndex.map((entry) => entry.name)
+        ? svgIndex.map((name) => name)
         : options.svgs;
 
       if (!options.svgs?.length && !options.all) {
@@ -54,10 +54,10 @@ export const add = new Command()
           message: "Which svgs would you like to add?",
           hint: "Space to select. A to toggle all. Enter to submit.",
           instructions: false,
-          choices: svgIndex.map((entry) => ({
-            title: entry.name,
-            value: entry.name,
-            selected: options.all ? true : options.svgs?.includes(entry.name),
+          choices: svgIndex.map((name) => ({
+            title: name,
+            value: name,
+            selected: options.all ? true : options.svgs?.includes(name),
           })),
         });
 
