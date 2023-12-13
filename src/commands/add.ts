@@ -11,8 +11,6 @@ import { copySvgs } from "@/src/utils/copy-svgs";
 
 const addOptionsSchema = z.object({
   svgs: z.array(z.string()).optional(),
-  yes: z.boolean(),
-  overwrite: z.boolean(),
   cwd: z.string(),
   all: z.boolean(),
   path: z.string().optional(),
@@ -22,8 +20,6 @@ export const add = new Command()
   .name("add")
   .description("add a svg to your project")
   .argument("[svgs...]", "the svg to add")
-  .option("-y, --yes", "skip confirmation prompt.", true)
-  .option("-o, --overwrite", "overwrite existing files.", false)
   .option(
     "-c, --cwd <cwd>",
     "the working directory. defaults to the current directory.",
@@ -68,16 +64,14 @@ export const add = new Command()
         selectedSvgs = svgs;
       }
 
-      console.log(selectedSvgs);
-
       if (!selectedSvgs?.length) {
         logger.warn("No svgs selected. Exiting.");
         process.exit(0);
       }
 
+      const spinner = ora("Getting SVG...").start();
       copySvgs(selectedSvgs, options.path);
-      const spinner = ora(`Getting SVG...`).start();
-      spinner.succeed(`Done.`);
+      spinner.succeed("Done.");
     } catch (error) {
       handleError(error);
     }
