@@ -7,7 +7,7 @@ import { z } from "zod";
 import { getSvgsInfo } from "@/src/utils/get-svgs-info";
 import { logger } from "@/src/utils/logger";
 import { handleError } from "@/src/utils/handle-error";
-import { copySvgs } from "@/src/utils/copy-svgs";
+import { fetchSvg } from "@/src/utils/fetch-svg";
 
 const addOptionsSchema = z.object({
   svgs: z.array(z.string()).optional(),
@@ -70,7 +70,7 @@ export const add = new Command()
       }
 
       const spinner = ora("Getting SVG...").start();
-      copySvgs(selectedSvgs, options.path);
+      fetchSvg(selectedSvgs);
       spinner.succeed("Done.");
     } catch (error) {
       handleError(error);
