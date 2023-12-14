@@ -31,10 +31,7 @@ export const add = new Command()
   .option("-p, --path <path>", "the path to add the svg to.")
   .action(async (svgs, opts) => {
     try {
-      const options = addOptionsSchema.parse({
-        svgs,
-        ...opts
-      });
+      const options = addOptionsSchema.parse({ svgs, ...opts });
 
       const cwd = path.resolve(options.cwd);
 

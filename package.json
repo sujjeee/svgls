@@ -39,6 +39,8 @@
     "lint:fix": "biome lint --apply-unsafe ./src",
     "format": "biome format ./src",
     "format:fix": "biome format --write ./src",
+    "code-check": "biome check ./src",
+    "code-check:fix": "biome check --apply-unsafe ./src",
     "pub:release": "pnpm build && pnpm publish --access public"
   },
   "dependencies": {
