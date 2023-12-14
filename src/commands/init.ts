@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import ora from "ora";
-import path from "path";
-import chalk from "chalk";
-import prompts from "prompts";
 import { promises as fs } from "fs";
-import { Command } from "commander";
-import { logger } from "@/src/utils/logger";
+import path from "path";
 import { handleError } from "@/src/utils/handle-error";
+import { logger } from "@/src/utils/logger";
+import chalk from "chalk";
+import { Command } from "commander";
+import ora from "ora";
+import prompts from "prompts";
 
 export const init = new Command()
   .name("init")

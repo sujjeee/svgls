@@ -1,15 +1,15 @@
-import path from "path";
-import { Command } from "commander";
-import ora from "ora";
 import { existsSync, promises as fs } from "fs";
+import path from "path";
+import { getConfigInfo } from "@/src/utils/get-config-info";
+import { getSvg } from "@/src/utils/get-svg";
+import { getSvgsList } from "@/src/utils/get-svgs-list";
+import { handleError } from "@/src/utils/handle-error";
+import { logger } from "@/src/utils/logger";
+import { Command } from "commander";
 import { default as create } from "fs-extra";
+import ora from "ora";
 import prompts from "prompts";
 import { z } from "zod";
-import { getSvgsList } from "@/src/utils/get-svgs-list";
-import { logger } from "@/src/utils/logger";
-import { handleError } from "@/src/utils/handle-error";
-import { getSvg } from "@/src/utils/get-svg";
-import { getConfigInfo } from "@/src/utils/get-config-info";
 
 const addOptionsSchema = z.object({
   svgs: z.array(z.string()).optional(),
