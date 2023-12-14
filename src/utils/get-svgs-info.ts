@@ -5,8 +5,17 @@ interface File {
 }
 
 export async function getSvgsInfo() {
+  const headers = {
+    Accept: "application/vnd.github.v3.raw",
+    Authorization: `Bearer ${process.env.API_KEY}`,
+  };
+
+  console.log("process.env.API_KEY", process.env.API_KEY);
   const response = await fetch(
-    "https://api.github.com/repos/pheralb/svgl/contents/static/library?ref=main"
+    "https://api.github.com/repos/pheralb/svgl/contents/static/library?ref=main",
+    {
+      headers,
+    }
   );
 
   const files = (await response.json()) as File[];

@@ -1,7 +1,8 @@
 import path from "path";
 import { Command } from "commander";
 import ora from "ora";
-import { existsSync } from "fs";
+import { existsSync, promises as fs } from "fs";
+import { default as create } from "fs-extra";
 import prompts from "prompts";
 import { z } from "zod";
 import { getSvgsInfo } from "@/src/utils/get-svgs-info";
@@ -69,9 +70,32 @@ export const add = new Command()
         process.exit(0);
       }
 
-      const spinner = ora("Getting SVG...").start();
-      fetchSvg(selectedSvgs);
-      spinner.succeed("Done.");
+      const spinner = ora("Fetching SVGs...").start();
+      const payload = await fetchSvg(selectedSvgs);
+
+      for (const item of payload) {
+        const targetDir = options.path
+          ? path.resolve(cwd, options.path)
+          : "public/svg";
+
+        if (!targetDir) {
+          continue;
+        }
+
+        if (!existsSync(targetDir)) {
+          await fs.mkdir(targetDir, { recursive: true });
+        }
+
+        if (!item.svg) {
+          spinner.stop();
+          logger.warn(`SVG for ${item.path} is not available.`);
+        } else {
+          let filePath = path.resolve(targetDir, `${item.path}.svg`);
+          create.writeFileSync(filePath, item.svg);
+          spinner.text = `Adding ${item.path}...`;
+        }
+      }
+      spinner.succeed(`Done.`);
     } catch (error) {
       handleError(error);
     }

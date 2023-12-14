@@ -3,21 +3,25 @@ export async function fetchSvg(paths: string[]) {
     "https://api.github.com/repos/pheralb/svgl/contents/static/library";
   const headers = {
     Accept: "application/vnd.github.v3.raw",
+    Authorization: `Bearer ${process.env.API_KEY}`,
   };
+
   try {
     const results = await Promise.all(
       paths.map(async (path) => {
         const response = await fetch(`${baseUrl}/${path}.svg?ref=main`, {
           headers,
         });
-        return await response.text();
+        if (!response.ok) {
+          return { path, svg: null };
+        }
+        const svg = await response.text();
+        return { path, svg };
       })
     );
 
-    console.log("resluts", results);
     return results;
   } catch (error) {
-    console.log(error);
     throw new Error(
       `Failed to fetch svg from github. Please visit https://svgl.vercel.app to download svgs manually.`
     );
