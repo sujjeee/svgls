@@ -20,8 +20,7 @@ export async function getSvgsList() {
 
   const names = files
     .map((file: File) => file.name)
-    .map((name: string) => name.replace(".svg", ""))
-    .map((name: string) => name.toLowerCase());
+    .map((name: string) => name.replace(".svg", ""));
 
   return names;
 }
