@@ -1,43 +1,48 @@
 # svgls
 
-A CLI for adding svgs to your project.
+A CLI for easily adding SVG icons to your project.
 
-## How to Use?
+## Usage
 
-## init
+### Initialize Config
 
 > This is optional command. It's only needed if you want to set a default workspace path.
 
-Use the `init` command to initialize config file for a new project.
-
-This will prompt you to enter the path you want to use for your workspace, and save it in a .svgls.json file.
-
-You can edit this file manually if you want to change the path later. The next time you run the add command, it will use the path from the config file.
+Use the `init` command to initialize a config file for a new project:
 
 ```bash
 npx svgls init
 ```
 
-## add
+This will prompt you to enter the path you want to use for your workspace and save it in a `svgls.json` file.
 
-Use the `add` command to add svgs to your project.
+You can edit this file manually later if you want to change the path.
 
-This will launch the interactive mode, where you can select the svgs you want.
+### Add SVGs
 
-You can use the arrow keys to navigate the list, the space bar to select or deselect items, and the enter key to confirm your selection.
+Use the `add` command to interactively add SVGs to your project:
 
 ```bash
-npx svgls add [component]
+npx svgls add
 ```
+
+This launches an interactive mode where you can:
+
+- Use arrow keys to navigate the SVG list
+- Press spacebar to select/deselect SVGs
+- Press enter to confirm selection
+
+
+You can also pass a space-separated list of SVG names on the command line:
 
 ### Example
 
 ```bash
-npx shadcn-ui add aws
+npx svgls add aws dub github
 ```
 
 ## Credits
 
-SVGL uses the awesome open-source SVG repo from [pheralb](https://twitter.com/pheralb_).
+SVG icons from [pheralb's](https://twitter.com/pheralb_) open-source SVG repository.
 
-Visit https://svgl.vercel.app to download svgs manually.
+Visit https://svgl.vercel.app to browse and download SVGs manually.
