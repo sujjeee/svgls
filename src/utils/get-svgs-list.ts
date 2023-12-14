@@ -4,13 +4,11 @@ interface File {
   name: string;
 }
 
-export async function getSvgsInfo() {
+export async function getSvgsList() {
   const headers = {
     Accept: "application/vnd.github.v3.raw",
-    // Authorization: `Bearer ${process.env.API_KEY}`,
   };
 
-  console.log("process.env.API_KEY", process.env.API_KEY);
   const response = await fetch(
     "https://api.github.com/repos/pheralb/svgl/contents/static/library?ref=main",
     {

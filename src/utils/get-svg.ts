@@ -1,9 +1,9 @@
-export async function fetchSvg(paths: string[]) {
+export async function getSvg(paths: string[]) {
   const baseUrl =
     "https://api.github.com/repos/pheralb/svgl/contents/static/library";
+
   const headers = {
     Accept: "application/vnd.github.v3.raw",
-    // Authorization: `Bearer ${process.env.API_KEY}`,
   };
 
   try {

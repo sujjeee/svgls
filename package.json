@@ -35,7 +35,7 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
-    "restart": "rimraf dist && rimraf public",
+    "reset": "rimraf dist && rimraf public",
     "clean:public": "rimraf public",
     "start": "node dist/index.js "
   },

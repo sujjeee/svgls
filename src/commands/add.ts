@@ -5,10 +5,10 @@ import { existsSync, promises as fs } from "fs";
 import { default as create } from "fs-extra";
 import prompts from "prompts";
 import { z } from "zod";
-import { getSvgsInfo } from "@/src/utils/get-svgs-info";
+import { getSvgsList } from "@/src/utils/get-svgs-list";
 import { logger } from "@/src/utils/logger";
 import { handleError } from "@/src/utils/handle-error";
-import { fetchSvg } from "@/src/utils/fetch-svg";
+import { getSvg } from "@/src/utils/get-svg";
 
 const addOptionsSchema = z.object({
   svgs: z.array(z.string()).optional(),
@@ -42,7 +42,7 @@ export const add = new Command()
         process.exit(1);
       }
 
-      const svgIndex = await getSvgsInfo();
+      const svgIndex = await getSvgsList();
 
       let selectedSvgs = options.all
         ? svgIndex.map((name) => name)
@@ -71,7 +71,7 @@ export const add = new Command()
       }
 
       const spinner = ora("Fetching SVGs...").start();
-      const payload = await fetchSvg(selectedSvgs);
+      const payload = await getSvg(selectedSvgs);
 
       for (const item of payload) {
         const targetDir = options.path
