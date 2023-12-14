@@ -50,6 +50,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.4.1",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.10.4",
     "@types/prompts": "^2.4.9",
