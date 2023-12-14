@@ -9,6 +9,7 @@ import { getSvgsList } from "@/src/utils/get-svgs-list";
 import { logger } from "@/src/utils/logger";
 import { handleError } from "@/src/utils/handle-error";
 import { getSvg } from "@/src/utils/get-svg";
+import { getConfigInfo } from "@/src/utils/get-config-info";
 
 const addOptionsSchema = z.object({
   svgs: z.array(z.string()).optional(),
@@ -74,8 +75,12 @@ export const add = new Command()
       const payload = await getSvg(selectedSvgs);
 
       for (const item of payload) {
+        const workSpacePath = await getConfigInfo();
+
         const targetDir = options.path
           ? path.resolve(cwd, options.path)
+          : workSpacePath && workSpacePath.path
+          ? workSpacePath.path
           : "public/svg";
 
         if (!targetDir) {
