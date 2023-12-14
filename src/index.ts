@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 import { add } from "@/src/commands/add";
-import getPackageInfo from "@/src/utils/get-package-info";
+import { getPackageInfo } from "@/src/utils/get-package-info";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
