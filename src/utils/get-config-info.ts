@@ -2,11 +2,11 @@ import path from "path";
 import fs from "fs-extra";
 
 export function getConfigInfo() {
-	const configInfoPath = path.join("svgls.json");
+  const configInfoPath = path.join("svgls.json");
 
-	if (!fs.existsSync(configInfoPath)) {
-		return null;
-	}
+  if (!fs.existsSync(configInfoPath)) {
+    return null;
+  }
 
-	return fs.readJSONSync(configInfoPath);
+  return fs.readJSONSync(configInfoPath);
 }
