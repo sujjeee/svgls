@@ -7,7 +7,7 @@ interface File {
 export async function getSvgsInfo() {
   const headers = {
     Accept: "application/vnd.github.v3.raw",
-    Authorization: `Bearer ${process.env.API_KEY}`,
+    // Authorization: `Bearer ${process.env.API_KEY}`,
   };
 
   console.log("process.env.API_KEY", process.env.API_KEY);

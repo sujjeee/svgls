@@ -3,7 +3,7 @@ export async function fetchSvg(paths: string[]) {
     "https://api.github.com/repos/pheralb/svgl/contents/static/library";
   const headers = {
     Accept: "application/vnd.github.v3.raw",
-    Authorization: `Bearer ${process.env.API_KEY}`,
+    // Authorization: `Bearer ${process.env.API_KEY}`,
   };
 
   try {

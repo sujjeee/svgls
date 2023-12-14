@@ -11,7 +11,7 @@ function main() {
   const packageInfo = getPackageInfo();
 
   const program = new Command()
-    .name("svgl")
+    .name("svgls")
     .description("a beautiful library with svg logos.")
     .version(
       packageInfo.version || "1.0.0",

@@ -1,11 +1,23 @@
 {
-  "name": "svgls",
-  "version": "1.0.1",
-  "description": "",
+  "name": "svglss",
+  "version": "1.0.8",
+  "description": "a beautiful library with svg logos.",
   "bin": "./dist/index.js",
   "type": "module",
   "exports": "./dist/index.js",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "sujjeee",
+    "url": "https://twitter.com/sujjeeee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suraj/svgls.git"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "q": "rimraf dist && tsup --watch",
@@ -14,9 +26,18 @@
     "dev:start": "node --env-file .env dist/index.js ",
     "start": "node dist/index.js "
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "svgs",
+    "logos",
+    "svgl",
+    "svgls",
+    "svgs collections",
+    "svgs library",
+    "sujjeee"
+  ],
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^11.1.0",
