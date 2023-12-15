@@ -1,6 +1,15 @@
 # svgls
 
-A CLI for easily adding SVG icons to your project.
+### A CLI for easily adding SVG icons to your project. 🧩
+
+<div align="center">
+<kbd>
+<a href="https://www.npmjs.com/package/svgls">
+  <img alt="a cli for easily adding SVG icons to your project." src="src/assets/opengraph.png">
+</a>
+</kbd>
+<br/>
+</div>
 
 ## Usage
 
