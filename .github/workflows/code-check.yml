@@ -18,7 +18,7 @@ jobs:
         with:
           version: 1.4.1
       - name: Run Biome
-        run: biome ci
+        run: biome ci .
 
   publish:
     needs: quality
