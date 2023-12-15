@@ -25,18 +25,42 @@ jobs:
   publish:
     needs: quality
     runs-on: ubuntu-latest
-    name: Publish Package
+    name: Publish
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: node
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.x"
+          node-version: 20
           registry-url: "https://registry.npmjs.org"
 
-      - name: publish
-        run: npm build && npm publish --access public
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.11.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: publish package
+        run: pnpm pub:release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.SVGL_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.SVGL_AUTH_TOKEN}}
