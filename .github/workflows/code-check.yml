@@ -58,4 +58,4 @@ jobs:
       - name: publish package
         run: pnpm pub:release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.SVGL_AUTH_TOKEN}}
