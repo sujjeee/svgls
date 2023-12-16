@@ -1,6 +1,6 @@
 {
   "name": "svgls",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a beautiful library with svg logos.",
   "publishConfig": {
     "access": "public"
