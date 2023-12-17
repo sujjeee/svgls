@@ -5,13 +5,18 @@
   },
   "overrides": [
     {
-      "ignore": ["dist"]
+      "ignore": ["node_modules", "dist"]
     }
   ],
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "nursery": {
+        "recommended": true,
+        "noUnusedImports": "warn",
+        "useAwait": "warn"
+      }
     }
   },
   "formatter": {
