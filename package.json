@@ -1,6 +1,6 @@
 {
   "name": "svgls",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "a beautiful library with svg logos.",
   "publishConfig": {
     "access": "public"
@@ -50,6 +50,7 @@
     "fs-extra": "^11.2.0",
     "node-fetch": "^3.3.2",
     "ora": "^7.0.1",
+    "package-json": "^8.1.1",
     "prompts": "^2.4.2",
     "rimraf": "^5.0.5",
     "zod": "^3.22.4"
