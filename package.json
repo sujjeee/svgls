@@ -1,6 +1,6 @@
 {
   "name": "svgls",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "a beautiful library with svg logos.",
   "publishConfig": {
     "access": "public"
@@ -12,6 +12,10 @@
   "author": {
     "name": "sujjeee",
     "url": "https://twitter.com/sujjeeee"
+  },
+  "homepage": "https://svgl.app",
+  "bugs": {
+    "url": "https://github.com/sujjeee/svgls/issues"
   },
   "repository": {
     "type": "git",
