@@ -19,11 +19,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/suraj/svgls.git"
+    "url": "https://github.com/sujjeee/svgls.git"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "keywords": [
     "svgs",
     "logos",
