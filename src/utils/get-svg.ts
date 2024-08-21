@@ -1,29 +1,57 @@
+import { SvglAPIResponse } from "@/src/utils/get-svgs-list"
+
 export async function getSvg(paths: string[]) {
-  const baseUrl =
-    "https://api.github.com/repos/pheralb/svgl/contents/static/library";
-
-  const headers = {
-    Accept: "application/vnd.github.v3.raw"
-  };
-
   try {
     const results = await Promise.all(
       paths.map(async (path) => {
-        const response = await fetch(`${baseUrl}/${path}.svg?ref=main`, {
-          headers
-        });
-        if (!response.ok) {
-          return { path, svg: null };
-        }
-        const svg = await response.text();
-        return { path, svg };
-      })
-    );
+        const response = await fetch(path)
 
-    return results;
+        if (!response.ok) {
+          return { path, svg: null }
+        }
+
+        const svg = await response.text()
+        return { path, svg }
+      }),
+    )
+
+    return results
   } catch (error) {
     throw new Error(
-      "Failed to fetch svg from github. Please visit https://svgl.vercel.app to download svgs manually."
-    );
+      "Failed to fetch svg from github. Please visit https://svgl.vercel.app to download svgs manually.",
+    )
+  }
+}
+
+interface FilterSvgsProps {
+  selectedSvgs: SvglAPIResponse["route"][]
+  select: "light" | "dark" | "both"
+}
+
+export function filterSvgs({
+  selectedSvgs,
+  select,
+}: FilterSvgsProps): string[] {
+  return selectedSvgs.flatMap((svg) => {
+    if (typeof svg === "object" && svg.light && svg.dark) {
+      if (select === "light") {
+        return [svg.light]
+      } else if (select === "dark") {
+        return [svg.dark]
+      } else {
+        return [svg.light, svg.dark]
+      }
+    } else if (typeof svg === "string") {
+      return [svg]
+    }
+    return []
+  })
+}
+
+export function getSVGNameFromUrl(url: string) {
+  const baseUrl = "https://svgl.app/library/"
+
+  if (url.startsWith(baseUrl)) {
+    return url.substring(baseUrl.length)
   }
 }

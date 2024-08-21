@@ -21,7 +21,9 @@
     "type": "git",
     "url": "https://github.com/sujjeee/svgls.git"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "svgs",
     "logos",
@@ -56,17 +58,17 @@
     "ora": "^7.0.1",
     "package-json": "^8.1.1",
     "prompts": "^2.4.2",
-    "rimraf": "^5.0.5",
-    "zod": "^3.22.4"
+    "rimraf": "^5.0.10",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.16.1",
     "@types/prompts": "^2.4.9",
     "ts-node": "^10.9.2",
-    "tsup": "^8.0.1",
-    "type-fest": "^4.8.3",
-    "typescript": "^5.3.3"
+    "tsup": "^8.2.4",
+    "type-fest": "^4.25.0",
+    "typescript": "^5.5.4"
   }
 }
