@@ -47,6 +47,13 @@ export const add = new Command()
       let selectedSvgs = options.all
         ? availableSvgs.map((svgs) => svgs.route)
         : options.svgs
+            ?.map((svgName) => {
+              const svg = availableSvgs.find(
+                (item) => item.title.toLowerCase() === svgName.toLowerCase()
+              )
+              return svg ? svg.route : null
+            })
+            .filter((route) => route !== null)
 
       if (!options.svgs?.length && !options.all) {
         const { svgs } = await prompts({
