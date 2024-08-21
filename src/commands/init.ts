@@ -20,7 +20,7 @@ export const init = new Command()
   .option(
     "-c, --cwd <cwd>",
     "the working directory. defaults to the current directory.",
-    process.cwd(),
+    process.cwd()
   )
   .action(async () => {
     try {
@@ -41,7 +41,7 @@ export async function promptForConfig() {
       type: "text",
       name: "path",
       message: `Where you want to add ${highlight("svgs")}?`,
-      initial: "public/svgs",
+      initial: "public/svgs"
     },
     {
       type: "select",
@@ -50,15 +50,15 @@ export async function promptForConfig() {
       choices: [
         { title: "Light", value: "light" },
         { title: "Dark", value: "dark" },
-        { title: "Both (default)", value: "both" },
+        { title: "Both (default)", value: "both" }
       ],
-      initial: 2,
-    },
+      initial: 2
+    }
   ])
 
   const config = {
     path: options.path,
-    theme: options.theme,
+    theme: options.theme
   }
 
   const spinner = ora("Configuring...").start()

@@ -12,13 +12,13 @@ export async function getSvg(paths: string[]) {
 
         const svg = await response.text()
         return { path, svg }
-      }),
+      })
     )
 
     return results
   } catch (error) {
     throw new Error(
-      "Failed to fetch svg from github. Please visit https://svgl.vercel.app to download svgs manually.",
+      "Failed to fetch svg from github. Please visit https://svgl.vercel.app to download svgs manually."
     )
   }
 }
@@ -30,18 +30,19 @@ interface FilterSvgsProps {
 
 export function filterSvgs({
   selectedSvgs,
-  select,
+  select
 }: FilterSvgsProps): string[] {
   return selectedSvgs.flatMap((svg) => {
     if (typeof svg === "object" && svg.light && svg.dark) {
       if (select === "light") {
         return [svg.light]
-      } else if (select === "dark") {
-        return [svg.dark]
-      } else {
-        return [svg.light, svg.dark]
       }
-    } else if (typeof svg === "string") {
+      if (select === "dark") {
+        return [svg.dark]
+      }
+      return [svg.light, svg.dark]
+    }
+    if (typeof svg === "string") {
       return [svg]
     }
     return []
@@ -54,4 +55,6 @@ export function getSVGNameFromUrl(url: string) {
   if (url.startsWith(baseUrl)) {
     return url.substring(baseUrl.length)
   }
+
+  throw new Error(`Invalid URL: ${url}`)
 }

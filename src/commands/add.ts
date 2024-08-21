@@ -16,7 +16,7 @@ const addOptionsSchema = z.object({
   cwd: z.string(),
   all: z.boolean(),
   path: z.string().optional(),
-  theme: z.enum(["light", "dark", "both"]).optional(),
+  theme: z.enum(["light", "dark", "both"]).optional()
 })
 
 export const add = new Command()
@@ -26,7 +26,7 @@ export const add = new Command()
   .option(
     "-c, --cwd <cwd>",
     "the working directory. defaults to the current directory.",
-    process.cwd(),
+    process.cwd()
   )
   .option("-a, --all", "add all available svg", false)
   .option("-p, --path <path>", "the path to add the svg to")
@@ -58,8 +58,8 @@ export const add = new Command()
           choices: availableSvgs.map((svgs) => ({
             title: svgs.title,
             value: svgs.route,
-            selected: options.all ? true : options.svgs?.includes(svgs.title),
-          })),
+            selected: options.all ? true : options.svgs?.includes(svgs.title)
+          }))
         })
 
         selectedSvgs = svgs
@@ -74,7 +74,7 @@ export const add = new Command()
 
       const filteredSvgs = filterSvgs({
         select: options.theme || workSpacePath?.theme || "both",
-        selectedSvgs,
+        selectedSvgs
       })
 
       const spinner = ora("Fetching SVGs...").start()
@@ -84,8 +84,8 @@ export const add = new Command()
         const targetDir = options.path
           ? path.resolve(cwd, options.path)
           : workSpacePath?.path
-          ? workSpacePath.path
-          : "public/svg"
+            ? workSpacePath.path
+            : "public/svg"
 
         if (!targetDir) {
           continue
@@ -98,13 +98,10 @@ export const add = new Command()
         if (!item.svg) {
           spinner.stop()
           logger.warn(
-            `SVG for ${getSVGNameFromUrl(item.path)} is not available.`,
+            `SVG for ${getSVGNameFromUrl(item.path)} is not available.`
           )
         } else {
-          const filePath = path.resolve(
-            targetDir,
-            getSVGNameFromUrl(item.path)!,
-          )
+          const filePath = path.resolve(targetDir, getSVGNameFromUrl(item.path))
 
           create.writeFileSync(filePath, item.svg)
           spinner.text = `Adding ${item.path}...`

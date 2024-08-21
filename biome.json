@@ -25,7 +25,7 @@
   },
   "javascript": {
     "formatter": {
-      "semicolons": "always",
+      "semicolons": "asNeeded",
       "trailingComma": "none",
       "bracketSpacing": true
     }
