@@ -1,7 +1,7 @@
 import { existsSync, promises as fs } from "fs"
 import path from "path"
 import { getConfigInfo } from "@/src/utils/get-config-info"
-import { filterSvgs, getSvg, getSVGNameFromUrl } from "@/src/utils/get-svg"
+import { filterSvgs, getSVGNameFromUrl, getSvg } from "@/src/utils/get-svg"
 import { getSvgsList } from "@/src/utils/get-svgs-list"
 import { handleError } from "@/src/utils/handle-error"
 import { logger } from "@/src/utils/logger"
